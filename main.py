@@ -6,7 +6,7 @@ import os
 import time
 
 render = web.template.render('templates/')
-urls = ('/', 'index', '/link/(.*)', 'Link')
+urls = ('/', 'index', '/link/(.*)', 'Link', '/rm/(.*)', 'rm')
 linkDict = {}
 
 class index:
@@ -20,7 +20,6 @@ class index:
 	def POST(self):
 		x = web.input(myfile={})
 		filename = (x['myfile'].filename)
-		print filename
 		what = (x['myfile'].file.read()) 
 		submittedFile = open('static/store/' + filename, 'wb')
 		submittedFile.write(what)
@@ -49,11 +48,16 @@ class Link:
 			link = link.strip('link/')
 			request = '../static/store/' + linkDict[int(str(link))]
 			#f = open(request, 'rb').read()
-			return self.render.link(request)
+			return self.render.link(link=request, linkNum=link)
 			#os.remove(request)
 			#del linkDict[int(str(link))]
 		else:
 			return self.render.index('Nothing here...')
+
+class rm:
+	def __init__(self, linkURL):
+		print 'called'
+		print linkURL
 
 if __name__ == "__main__":
 	app = web.application(urls, globals()) 

@@ -1,7 +1,9 @@
-$def with (link)
+$def with (link, linkNum)
 
-$def rmfile():
-	hello this works!
+$code
+def rmfile():
+	
+
 <html>
 	<title>Dead Drop</title>
 
@@ -15,7 +17,7 @@ $def rmfile():
 				<img src='../static/images/logo.png'></img>
 			</div>
 			<div id='form'>
-				<a href='$:link' onclick='$rmfile()' download>Click to download</a>
+				<a href='$:link' onclick='/rm/$:linkNum' download>Click to download</a>
 			</div>
 		</center>
 	</body>
