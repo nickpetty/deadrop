@@ -1,0 +1,20 @@
+body, html{
+	margin:0;
+	margin:0;
+	padding: 50px 0px 0px 0px;
+	background-color:white;
+}
+
+#form {
+	border-style: solid;
+	border-color: 000000;
+	width: 383px;
+	background-color:white;
+	margin: 0;
+	margin: 0;
+	padding: 20px 10px 10px 10px;
+}
+
+#logo {
+	padding: 10px 10px 10px 10px;
+}

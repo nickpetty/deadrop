@@ -1,0 +1,22 @@
+$def with (link)
+
+$def rmfile():
+	hello this works!
+<html>
+	<title>Dead Drop</title>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="../static/style.css">
+	</head>
+
+	<body>
+		<center>
+			<div id='logo'>
+				<img src='../static/images/logo.png'></img>
+			</div>
+			<div id='form'>
+				<a href='$:link' onclick='$rmfile()' download>Click to download</a>
+			</div>
+		</center>
+	</body>
+</html>
