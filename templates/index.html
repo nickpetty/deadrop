@@ -1,20 +1,29 @@
 $def with (form)
 
 <html>
-	<title>Dead Drop</title>
+	<title>dead drop</title>
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="../static/style.css">
+		<script src="../static/js/dropzone.js"></script>
+		<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
 	</head>
 
 	<body>
 		<center>
 			<div id='logo'>
-				<img src='../static/images/logo.png'></img>
+				<a href='/'><img src='../static/images/logo.png' /></a>
 			</div>
 			<div id='form'>
-				$:form
+			$:form
 			</div>
 		</center>
+		<div id="footer">
+			<center>
+				<a href='http://github.com/nickpetty/deadrop'>View on Github</a> | <a href="http://ihackeverything.com/">I Hack Everything</a> | <a href="/about">About</a>
+				<br>
+				built on web.py
+			</center>
+		</div>
 	</body>
 </html>
