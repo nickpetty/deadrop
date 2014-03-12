@@ -6,7 +6,7 @@ import os
 import time
 
 render = web.template.render('templates/')
-urls = ('/', 'index', '/link/(.*)', 'Link', '/a/(.*)', 'a', '/about', 'about')
+urls = ('/', 'index', '/link/(.*)', 'Link', '/a/(.*)', 'a', '/about', 'about', '/download/(.*)', 'Download')
 linkDict = {}
 
 class index:
@@ -44,7 +44,31 @@ class Link:
 
 	def GET(self, link):
 		link = link.strip('link/')
+		return self.render.download(link)
+
+class a:
+	def __init__(self):
+		self.render = web.template.render('templates/')
+
+	def GET(self, value):
+		return self.render.link('http://cloud.ihackeverything.com:85/link/' + str(value))
+
+class about:
+	def __init__(self):
+		self.render = web.template.render('templates/')
+
+	def GET(self):
+		return self.render.about()
+
+class Download:
+	def __init__(self):
+		self.render = web.template.render('templates/')
+
+	def GET(self, link):
+		print 'called'
+		link = link.strip('link/')
 		if int(str(link)) in linkDict.keys():
+			print 'key found'
 			request = 'store/' + linkDict[int(str(link))]
 			f = open(request, 'rb')
 			web.header('Content-Type','application/binary')
@@ -59,20 +83,6 @@ class Link:
 			del linkDict[int(str(link))]
 		else:
 			yield self.render.index('Nothing here...')
-
-class a:
-	def __init__(self):
-		self.render = web.template.render('templates/')
-
-	def GET(self, value):
-		return self.render.link('http://localhost:8080/link/' + str(value))
-
-class about:
-	def __init__(self):
-		self.render = web.template.render('templates/')
-
-	def GET(self):
-		return self.render.about()
 
 if __name__ == "__main__":
 	app = web.application(urls, globals()) 
