@@ -51,7 +51,7 @@ class a:
 		self.render = web.template.render('templates/')
 
 	def GET(self, value):
-		return self.render.link('http://cloud.ihackeverything.com:85/link/' + str(value))
+		return self.render.link('http://deadrop.cc/link/' + str(value))
 
 class about:
 	def __init__(self):
