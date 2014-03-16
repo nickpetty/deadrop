@@ -7,6 +7,7 @@ import time
 import MySQLdb
 
 web.config.debug = False
+
 configFile = open('config', 'r')
 config = {}
 for line in configFile:
@@ -16,7 +17,7 @@ for line in configFile:
 db = MySQLdb.connect(host=config['dbHost'], user=config['dbUser'], passwd=config['dbPass'], db=config['db'])
 
 render = web.template.render('templates/')
-urls = ('/', 'index', '/link/(.*)', 'Link', '/a/(.*)', 'a', '/about', 'about', '/download/(.*)', 'Download', '/api/(.*)' 'api')
+urls = ('/', 'index', '/link/(.*)', 'Link', '/a/(.*)', 'a', '/about', 'about', '/download/(.*)', 'Download', '/api' 'api')
 
 class index:
 	def __init__(self):
@@ -105,7 +106,11 @@ class Download:
 				yield self.render.index('Nothing here...')
 
 class api:
-	def POST(self, file):
+	def PUT(self):
+		print "called"
+		datta = web.data()
+		with open("blah.txt", 'w') as f:
+			f.write(datta)
 		return "worked"
 
 if __name__ == "__main__":
