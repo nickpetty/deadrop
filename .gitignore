@@ -16,6 +16,8 @@ local.properties
 .settings/
 .loadpath
 config
+test.py
+safe.py
 
 # External tool builders
 .externalToolBuilders/
