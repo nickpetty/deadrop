@@ -6,6 +6,7 @@ import os
 import time
 import MySQLdb
 
+web.config.debug = False
 configFile = open('config', 'r')
 config = {}
 for line in configFile:
@@ -15,7 +16,7 @@ for line in configFile:
 db = MySQLdb.connect(host=config['dbHost'], user=config['dbUser'], passwd=config['dbPass'], db=config['db'])
 
 render = web.template.render('templates/')
-urls = ('/', 'index', '/link/(.*)', 'Link', '/a/(.*)', 'a', '/about', 'about', '/download/(.*)', 'Download')
+urls = ('/', 'index', '/link/(.*)', 'Link', '/a/(.*)', 'a', '/about', 'about', '/download/(.*)', 'Download', '/api/(.*)' 'api')
 
 class index:
 	def __init__(self):
@@ -102,6 +103,10 @@ class Download:
 				cur.execute("DELETE FROM files WHERE link={0}".format(link))
 			else:
 				yield self.render.index('Nothing here...')
+
+class api:
+	def POST(self, file):
+		return "worked"
 
 if __name__ == "__main__":
 	app = web.application(urls, globals()) 
