@@ -32,11 +32,14 @@ class index:
 		x = web.input(myfile={})
 		filename = (x['myfile'].filename)
 		what = (x['myfile'].file.read())
-		if len(what) < 10485760: 
-			submittedFile = open('store/' + filename, 'wb')
-			submittedFile.write(what)
-			submittedFile.close()
-			return self.linkGen(filename)
+		if len(what) > 0:
+			if len(what) < 10485760: 
+				submittedFile = open('store/' + filename, 'wb')
+				submittedFile.write(what)
+				submittedFile.close()
+				return self.linkGen(filename)
+		else:
+			raise web.seeother('/')
 
 	def linkGen(self, filename):
 		i = datetime.datetime.now()
