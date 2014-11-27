@@ -24,7 +24,6 @@ class index:
 		self.render = web.template.render('templates/')
 
 	def GET(self):
-		#form = '<form method="POST" enctype="multipart/form-data" action=""><input type="file" name="myfile" onchange="this.form.submit();"/>'
 		form = '<form id="uploadForm" method="POST" enctype="multipart/form-data" action=""><input type="file" id="uploadedFile" name="myfile" /><input type="submit" /><br><em>Max upload size: 10mb</em>'
 		return self.render.index(form)
 
